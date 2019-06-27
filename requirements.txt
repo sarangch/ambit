@@ -1,0 +1,8 @@
+gevent==1.4.0
+requests==2.21.0
+numpy==1.16.3
+Flask==1.0.2
+flask-restplus==0.12.1
+beautifulsoup4==4.7.1
+vaderSentiment==3.2.1
+Flask-JWT-Extended==3.18.2
