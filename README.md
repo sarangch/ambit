@@ -2,7 +2,7 @@
 Topic modelling can be used to classify a text documents into their corresponding topics. There are algorithms that can find the distributions of certain keywords and their combinations within the documents. Then high density collections of keywords can be called a topic. Here is a descriptive image for such models. The larger the words represent the higher frequency within the corresponding topic. 
 <IMG src="https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2018/05/22/sagemaker-ntm-6.gif"/>
 
-Such topic modelling can be done on the collected user inquiries within the call centres. 
+Such topic modelling can be done on the collected user inquiries within the call centres or other communication channels within the organizations. These communication channels are phone calls, chatbots, digital avatars, surveys and etc. The first step in dealing with all these sources of conversatinos is to convert them to text and then apply NLP algorithms on them.  
 
 # What are the topic models
 The models are the collections of topics that exist in a text dataset. There are multiple levels of topic modelling based on the resolution of the topics. For example consider the articles in a newspaper, as the text data set that we want to apply modelling on it. By applying topic modelling we might end up with multiple topics collections (models). Here we call the models as model1, model2 and model3 with their topics among them. 
@@ -41,6 +41,9 @@ There definitely are some overlap between the topics of a model. The best models
 ![notes_1.PNG](/.attachments/notes_1-c833b5b0-eda5-4c58-a3b7-7c094e0aed33.PNG)
 
 ![notes_2.PNG](/.attachments/notes_2-39edb6d0-bbf7-498c-99a5-c8c30db96d80.PNG)
+
+# How to create a topic model
+One of the best algorithms to achive topic modelling is Latent Dirichlet allocation (LDA). In this method, every text dataset is broken down to its forming words. 
 
 # How to measure how good a model is
 In the execution of the modelling algorithm we can calculate a criterion called coherence value and shows how good the model topics classify the whole training set. The models (topics collections) with higher coherence values can be considered as good models. The modelling algorithm was applied on Addons notes for the number of topics varying from 2 to 41 and for each model the coherence value is calculated and shown in the following graph .
