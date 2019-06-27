@@ -1,11 +1,5 @@
-[[_TOC_]]
-
 # Introduction
-Topic modelling can be used to classify a text documents into their corresponding topics. There are algorithms that can find the distributions of certain keywords and their combinations within the documents. Then high density collections of keywords can be called a topic.  
-
-![image.png](/.attachments/image-dbb3683c-f2df-4ea5-9862-7385f6a13f42.png)
-
-Another descriptive image can be shown as below. The larger the words represent the higher frequency within the corresponding topic. 
+Topic modelling can be used to classify a text documents into their corresponding topics. There are algorithms that can find the distributions of certain keywords and their combinations within the documents. Then high density collections of keywords can be called a topic. Here is a descriptive image can be shown as below. The larger the words represent the higher frequency within the corresponding topic. 
 <IMG src="https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2018/05/22/sagemaker-ntm-6.gif"/>
 
 # What are the topic models
