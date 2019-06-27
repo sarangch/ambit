@@ -12,7 +12,7 @@ class Sentiment(Resource):
 
 # method to calculate sentiment for any input conversatino text
 # and store it to the DB
-@api.route('/store_sentiment')
+@api.route('/sentiment_topic')
 class Sentiment(Resource):
     @api.expect(sentiment_req_fields, validate=True)
     def post(self):
