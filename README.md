@@ -35,6 +35,63 @@ The models are the collections of topics that exist in a text dataset. There are
 
 As can be seen these models introduce different topics classification among the same document sets. All of them are valid and can be used based on the context. To pick the best model, we can check the keywords that each topic contains to see which ones is more relevant to the context. 
 
+# Text topics modelling
+One of the important uses of NLP is to analyze a text and find out its topic. Such analysis can be performed on a large train dataset and blindly find the topics within those texts. The created model can then be used to find the topic of any other texts within that dataset. To perform the modelling, some preprocessing should be done on the train dataset to clean it. The cleaned dataset will then be broken down to its forming words to create a bag-of-words representation of that text. A model will then be trained on the distribution of the collection of these bag-of-words. Such a model, can find the highest probable occurrences of the word combinations (their distribution) and then cluster them into topics. So each model can represent a collection of high probable for that specific topic which can be used for the classification of any new document. 
+
+## Text cleanup
+Within a text there are many grammar or language related words, acronyms, terms, phrases, etc. that do not contribute to the general topic of the text. Within the cleanup process, they can be removed from the text to have less and more descriptive words within the document. Some of these removed parts are emails, dates, acronyms, numbers, punctuations and stop words. 
+
+## Tokenize words
+In this step all each document is broken down into a list of words (tokens). After applying this step, each document containing many paragraphs and sentences can be represented with a list of important words within it. 
+
+## Stemming and Lemmatization
+Stemming is the process of converting the words of a sentence to its non-changing portions. Lemmatization is the process of converting the words of a sentence to its dictionary form. Here are some examples of applying these two algorithms in a document:
+- am, are, is $\Rightarrow$ be 
+- car, cars, car's, cars' $\Rightarrow$ car
+- the boy's cars are different colors $\Rightarrow$ the boy car be differ color
+After applying this step, all the variations of a word can be replaced with a single basic form of that word that can result in less number of representative words for each document. 
+
+## Creating Lexicon and Corpus 
+The corpus is the collection of words specific to a particular subject and lexicon is the vocabulary of a context that can be referred to as a dictionary. Using some proposed methods in NLP these entities can be created for the lists of words of the documents. 
+
+## Building the topic model
+One of the best topic modelling methods in NLP is Latent Dirichlet Allocation (LDA). LDA is used to classify text in a document to a particular topic. It builds a topic per document model and words per topic model, modeled as Dirichlet distributions. Each document is modeled as a multinomial distribution of topics and each topic is modeled as a multinomial distribution of words. LDA assumes that the every chunk of text we feed into it will contain words that are somehow related. Therefore choosing the right corpus of data is crucial. It also assumes documents are produced from a mixture of topics. Those topics then generate words based on their probability distribution.
+
+The number of topics should be given to LDA algorithm and it will then generate the model. It is important to find the best number of topics that can represent the collection of documents. There are some measures that can show how good a model can find the number of topics, which is called coherence score. A good number of topics is a number that has least overlapping between the topics and each topic can cover big set of documents within the collection, and this can be represented by higher values of coherence score. To find this number, the model will be run to create models for a number of topics for example from 2 to 30 and then the coherence score will be measured for each model. The one that has the highest coherence score, will then be considered as the final model. 
+
+An example of such modelling method was implemented using the Addons notes with types CAL and CNV collected in August 2018. The modelling process was repeated for the number of topics from 2 to 21 and coherence measure was calculated on them to find the best number of topics for the train document. The optimum number of topics in the model is 7 and the next best number of topics is 17 as shown in the following image. 
+
+
+For the models with 7 and 17 topics the distribution of words can be seen in the attached models. These distributions show the high frequency key words in a descending order for each topic and are quite illustrative of the topics and their meaning. As an example the words distribution for the 7 topics in the model are as below:
+![1.PNG](/.attachments/1-3b7eca91-0bf0-4a69-9381-4fa2596b0011.PNG)
+
+![2.PNG](/.attachments/2-91953350-0add-4cb0-ab61-00c4c95009fe.PNG)
+
+![3.PNG](/.attachments/3-3a1d1925-a393-43a1-8167-5dba77f71944.PNG)
+
+![4.PNG](/.attachments/4-3faaa48c-9137-463e-a5bd-6a40b27303ed.PNG)
+
+![5.PNG](/.attachments/5-c2934a8c-d83b-43a8-9b97-e8c5f043c5e6.PNG)
+
+![6.PNG](/.attachments/6-80f35894-d69b-4777-ade9-e232de34acf4.PNG)
+
+![7.PNG](/.attachments/7-e9c26b5e-cd11-45ef-b7a2-3cc78424b200.PNG)
+
+By looking at the most frequent words of each topic we can have an idea of that topic and hence the notes that fall under that topic.  
+
+## Applying the model
+After creating the model, it can then be applied to all the new text entries in the system to classify them to the right topic. If the model illustrated in previous section is applied to a set of new documents, the returned value will then be a number from 1 to 7 for each document stating the topic of that document.
+
+# Application of text topic models
+Such modelling method was discussed in the previous section. These models can give us some understanding of the possible topics of any targeted communication channels. Knowing the topics of any document can give us the opportunity of analyzing and taking actions on it automatically. Some possible use cases of such modelling are discussed in this section. 
+
+
+
+
+
+
+
+
 # What is a good model
 There definitely are some overlap between the topics of a model. The best models are the ones that have very little overlap between their topics and cover almost all the regions (keywords distribution) of the text. In the following graphs, each graph represents a model and each circle represents a topic within that model. The plane of each graph represents the whole text dataset. The larger the circle, the larger that topic (covering more text and documents). The overlapping circles represent the common keywords among those topics. In these shown models, the first one represents a better model than the second one
 
@@ -43,7 +100,7 @@ There definitely are some overlap between the topics of a model. The best models
 ![notes_2.PNG](/.attachments/notes_2-39edb6d0-bbf7-498c-99a5-c8c30db96d80.PNG)
 
 # How to create a topic model
-One of the best algorithms to achive topic modelling is Latent Dirichlet allocation (LDA). In this method, every text dataset is broken down to its forming words. 
+One of the best algorithms to achive topic modelling is Latent Dirichlet allocation (LDA). In this method, every document in the text dataset is broken down to its forming words. These words are then tokenized and lemmatized
 
 # How to measure how good a model is
 In the execution of the modelling algorithm we can calculate a criterion called coherence value and shows how good the model topics classify the whole training set. The models (topics collections) with higher coherence values can be considered as good models. The modelling algorithm was applied on Addons notes for the number of topics varying from 2 to 41 and for each model the coherence value is calculated and shown in the following graph .
