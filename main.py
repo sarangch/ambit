@@ -20,8 +20,9 @@ class Sentiment(Resource):
         uid = req['uid']
         text = req['text']
         score = helper.sentiment_score(text)
-        helper.store(uid, text, score, None, None)
-        respJson = {"sentiment": score, "topic": None, "accuracy": None}
+        topic, accuracy = tm.findTopic(text)
+        helper.store(uid, text, score, topic, accuracy)
+        respJson = {"sentiment": score, "topic": topic, "accuracy": float(accuracy)}
         return respJson
 
 @api.route('/unhappy')

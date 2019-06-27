@@ -2,12 +2,13 @@ from random import randint
 import re
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from tinydb import Query, TinyDB
-analyzer = SentimentIntensityAnalyzer()
+
 
 class Helper:
     def __init__(self, dbPath='db.json'):
         self.path = dbPath
         self.db = TinyDB(dbPath)
+        self.analyzer = SentimentIntensityAnalyzer()
 
     def _scale(self, number):
         if -1 <= number < -0.95:
@@ -57,7 +58,6 @@ class Helper:
         return res
 
     def unhappyUsers(self, scoreLimit=0.0):
-        users = []
         q = Query()
         vals = self.db.search(q.sentiment < scoreLimit)
         return vals
@@ -68,7 +68,7 @@ class Helper:
     def sentiment_score(self, inputStr):
         if inputStr is None:
             return 0
-        vs = analyzer.polarity_scores(inputStr)
+        vs = self.analyzer.polarity_scores(inputStr)
         number = 0.01 * int(100 * float(vs['compound']))
         number_scaled = self._scale(number)
         return number_scaled

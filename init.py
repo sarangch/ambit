@@ -4,12 +4,14 @@ import re
 import datetime
 import os
 from Helper import *
-
+from TopicModel import *
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret key'
 api = Api(app)
 helper = Helper()
+tm = TopicModel('model/model.p', 'model/dictionary.p')
+
 
 # ask_req_fields = api.model('AskReqFields', {
 #     'sid': fields.String(required=True, description='The session ID of the message'),
