@@ -5,4 +5,4 @@ flask-restplus==0.12.1
 vaderSentiment==3.2.1
 tinydb==3.13.0
 gensim==3.7.3
-nltk==3.4.3
+nltk==3.4.5
